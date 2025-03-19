@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudySystem - Học Từ Xa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 450px;
+            width: 100%;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Welcome Section */
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .welcome-section h1 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .welcome-section p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .form-container {
+            display: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-container.active {
+            display: block;
+        }
+
+        .form-container h2 {
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-container input,
+        .form-container select {
+            width: 100%; /* Đặt chiều rộng cố định cho tất cả input và select */
+            padding: 12px 15px 12px 40px; /* Đảm bảo padding đồng bộ */
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        /* Xóa phần CSS riêng cho email và password vì giờ tất cả đều có cùng chiều dài */
+        .form-container input:focus,
+        .form-container select:focus {
+            border-color: #6e8efb;
+            box-shadow: 0 0 5px rgba(110, 142, 251, 0.2);
+        }
+
+        .form-container button {
+            padding: 12px;
+            background: #6e8efb;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .form-container button:hover {
+            background: #5a78e0;
+        }
+
+        .form-container p {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .form-container a {
+            color: #6e8efb;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .form-container a:hover {
+            color: #5a78e0;
+            text-decoration: underline;
+        }
+
+        /* Add icon to inputs */
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translateY(-50%);
+            color: #999;
+        }
+
+        .input-wrapper input,
+        .input-wrapper select {
+            padding-left: 40px;
+        }
+
+        /* Animation for form transition */
+        .form-container {
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Welcome Section -->
+        <div class="welcome-section">
+            <h1>Chào Mừng đến với StudySystem</h1>
+            <p>Học tập trực tuyến dễ dàng và hiệu quả!</p>
+        </div>
+
+        <!-- Form Đăng Ký -->
+        <div id="register-form" class="form-container">
+            <h2>Đăng Ký</h2>
+            <form id="registerForm">
+                <div class="input-wrapper">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="registerName" placeholder="Họ và tên" required>
+                </div>
+                <div class="input-wrapper email-input">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="registerEmail" placeholder="Email" required>
+                </div>
+                <div class="input-wrapper password-input">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="registerPassword" placeholder="Mật khẩu" required>
+                </div>
+                <div class="input-wrapper">
+                    <i class="fas fa-users"></i>
+                    <select id="registerRole" required>
+                        <option value="" disabled selected>Chọn vai trò</option>
+                        <option value="student">Học sinh</option>
+                        <option value="teacher">Giáo viên</option>
+                        <option value="admin">Quản trị viên</option>
+                    </select>
+                </div>
+                <div class="input-wrapper">
+                    <i class="fas fa-calendar-alt"></i>
+                    <input type="date" id="registerDob" placeholder="Ngày sinh" required>
+                </div>
+                <div class="input-wrapper">
+                    <i class="fas fa-phone"></i>
+                    <input type="text" id="registerPhone" placeholder="Số điện thoại">
+                </div>
+                <div class="input-wrapper">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <input type="text" id="registerAddress" placeholder="Địa chỉ">
+                </div>
+                <div class="input-wrapper">
+                    <i class="fas fa-venus-mars"></i>
+                    <select id="registerGender">
+                        <option value="" disabled selected>Chọn giới tính</option>
+                        <option value="male">Nam</option>
+                        <option value="female">Nữ</option>
+                        <option value="other">Khác</option>
+                    </select>
+                </div>
+                <button type="submit">Đăng Ký</button>
+            </form>
+            <p>Đã có tài khoản? <a href="#" onclick="showLogin()">Đăng nhập</a></p>
+        </div>
+
+        <!-- Form Đăng Nhập -->
+        <div id="login-form" class="form-container active">
+            <h2>Đăng Nhập</h2>
+            <form id="loginForm">
+                <div class="input-wrapper email-input">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="loginEmail" placeholder="Email" required>
+                </div>
+                <div class="input-wrapper password-input">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="loginPassword" placeholder="Mật khẩu" required>
+                </div>
+                <button type="submit">Đăng Nhập</button>
+            </form>
+            <p>Quên mật khẩu? <a href="#" onclick="showForgotPassword()">Khôi phục mật khẩu</a></p>
+            <p>Chưa có tài khoản? <a href="#" onclick="showRegister()">Đăng ký</a></p>
+        </div>
+
+        <!-- Form Quên Mật Khẩu -->
+        <div id="forgot-password-form" class="form-container">
+            <h2>Quên Mật Khẩu</h2>
+            <form id="forgotPasswordForm">
+                <div class="input-wrapper email-input">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="forgotEmail" placeholder="Email" required>
+                </div>
+                <button type="submit">Gửi Mã Khôi Phục</button>
+            </form>
+            <p>Quay lại <a href="#" onclick="showLogin()">Đăng nhập</a></p>
+        </div>
+
+        <!-- Form Đặt Lại Mật Khẩu -->
+        <div id="reset-password-form" class="form-container">
+            <h2>Đặt Lại Mật Khẩu</h2>
+            <form id="resetPasswordForm">
+                <div class="input-wrapper">
+                    <i class="fas fa-key"></i>
+                    <input type="text" id="resetCode" placeholder="Mã xác nhận (6 số)" required>
+                </div>
+                <div class="input-wrapper password-input">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="newPassword" placeholder="Mật khẩu mới" required>
+                </div>
+                <button type="submit">Đặt Lại Mật Khẩu</button>
+            </form>
+            <p>Quay lại <a href="#" onclick="showLogin()">Đăng nhập</a></p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript để chuyển đổi giữa các form
+        function showRegister() {
+            document.getElementById('register-form').classList.add('active');
+            document.getElementById('login-form').classList.remove('active');
+            document.getElementById('forgot-password-form').classList.remove('active');
+            document.getElementById('reset-password-form').classList.remove('active');
+        }
+
+        function showLogin() {
+            document.getElementById('register-form').classList.remove('active');
+            document.getElementById('login-form').classList.add('active');
+            document.getElementById('forgot-password-form').classList.remove('active');
+            document.getElementById('reset-password-form').classList.remove('active');
+        }
+
+        function showForgotPassword() {
+            document.getElementById('register-form').classList.remove('active');
+            document.getElementById('login-form').classList.remove('active');
+            document.getElementById('forgot-password-form').classList.add('active');
+            document.getElementById('reset-password-form').classList.remove('active');
+        }
+
+        function showResetPassword() {
+            document.getElementById('register-form').classList.remove('active');
+            document.getElementById('login-form').classList.remove('active');
+            document.getElementById('forgot-password-form').classList.remove('active');
+            document.getElementById('reset-password-form').classList.add('active');
+        }
+
+        // Xử lý form (ví dụ: gửi dữ liệu)
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Đăng ký thành công!');
+            showLogin();
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    // Giả lập kiểm tra đăng nhập thành công (bạn có thể thay bằng logic thực tế nếu có backend)
+    alert('Đăng nhập thành công!');
+    window.location.href = 'http://localhost:3000/'; // Chuyển hướng về localhost:3000
+});
+
+        document.getElementById('forgotPasswordForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Mã khôi phục đã được gửi!');
+            showResetPassword();
+        });
+
+        document.getElementById('resetPasswordForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Mật khẩu đã được đặt lại!');
+            showLogin();
+        });
+    </script>
+</body>
+</html>

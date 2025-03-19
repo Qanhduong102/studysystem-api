@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #00b4d8 0%, #ffffff 100%); /* Nền gradient xanh biếc đến trắng */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px; /* Tăng kích thước form để thoáng hơn */
+}
+
+.form-container {
+    background: #fefaf0; /* Nền trắng ngà, sáng và ấm */
+    padding: 40px;
+    border-radius: 20px; /* Bo góc lớn hơn, hiện đại */
+    box-shadow: 0 8px 30px rgba(168, 230, 207, 0.3); /* Bóng đổ xanh lá nhạt */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-container:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(168, 230, 207, 0.5);
+}
+
+h2 {
+    margin-bottom: 25px;
+    color: #1a3c5e; /* Xanh đậm cho tiêu đề */
+    font-size: 30px; /* Tăng kích thước chữ */
+    font-weight: 700;
+}
+
+input, select {
+    width: 100%;
+    padding: 14px;
+    margin: 12px 0;
+    border: 2px solid #a8e6cf; /* Viền xanh lá nhạt */
+    border-radius: 10px; /* Bo góc input */
+    font-size: 16px;
+    background: #ffffff; /* Nền trắng cho input */
+    color: #1a3c5e; /* Chữ xanh đậm */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #00b4d8; /* Viền xanh biếc khi focus */
+    box-shadow: 0 0 8px rgba(0, 180, 216, 0.4);
+}
+
+input::placeholder, select::placeholder {
+    color: #a8e6cf; /* Placeholder xanh lá nhạt */
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    background-color: #ffcad4; /* Nút hồng phấn */
+    color: #1a3c5e; /* Chữ xanh đậm */
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #ffb3c6; /* Hồng đậm hơn khi hover */
+    transform: scale(1.05);
+}
+
+p {
+    margin-top: 20px;
+    color: #1a3c5e;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+a {
+    color: #ffcad4; /* Liên kết hồng phấn */
+    text-decoration: none;
+    font-weight: 600;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #ffb3c6;
+}
+.success-message {
+    text-align: center;
+    padding: 20px;
+    background-color: #e7f3fe;
+    border: 1px solid #2196F3;
+    border-radius: 5px;
+}
+
+.success-message h3 {
+    color: #2196F3;
+    margin-bottom: 10px;
+}
+
+.success-message p {
+    margin-bottom: 15px;
+}
+
+.btn-primary {
+    background-color: #2196F3;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #1976D2;
+}
